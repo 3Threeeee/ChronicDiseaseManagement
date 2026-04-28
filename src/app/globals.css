@@ -18,6 +18,9 @@
   --color-alert-yellow: #EAB308;
   --color-alert-orange: #F97316;
   --color-alert-red: #EF4444;
+  --color-alert-yellowText: #854D0E;
+  --color-alert-orangeText: #9A3412;
+  --color-alert-redText: #991B1B;
 }
 
 @media (prefers-color-scheme: dark) {
