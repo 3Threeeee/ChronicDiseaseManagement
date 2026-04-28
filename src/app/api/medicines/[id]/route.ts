@@ -86,6 +86,7 @@ export async function DELETE(
       )
     }
 
+    await prisma.checkIn.deleteMany({ where: { medicineId: id } })
     await prisma.medicinePrescription.deleteMany({ where: { medicineId: id } })
     await prisma.medicineInventory.deleteMany({ where: { medicineId: id } })
     await prisma.medicine.delete({ where: { id } })

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { verifyToken } from '@/lib/auth'
+import { detectMedicineConflict } from '@/lib/inventory'
 
 function getUserId(req: NextRequest): string | null {
   const token =
@@ -67,6 +68,14 @@ export async function POST(req: NextRequest) {
         { success: false, error: '缺少必填字段: name, dosage, frequency, schedule' },
         { status: 400 }
       )
+    }
+
+    const conflict = await detectMedicineConflict(userId, name)
+    if (conflict) {
+      return NextResponse.json({
+        success: true,
+        conflict: { existingId: conflict.id, existingName: conflict.name },
+      })
     }
 
     const scheduleJson = JSON.stringify(schedule)
