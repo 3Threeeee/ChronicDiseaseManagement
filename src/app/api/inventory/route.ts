@@ -21,16 +21,23 @@ export async function GET(req: NextRequest) {
 
     const { searchParams } = new URL(req.url)
     const targetUserId = searchParams.get('userId')
+    let queryUserId = userId
 
     if (targetUserId && targetUserId !== userId) {
-      return NextResponse.json(
-        { success: false, error: '无权查看其他用户的库存' },
-        { status: 403 }
-      )
+      const binding = await prisma.familyBinding.findFirst({
+        where: { familyId: userId, patientId: targetUserId, verified: true },
+      })
+      if (!binding) {
+        return NextResponse.json(
+          { success: false, error: '无权查看其他用户的库存' },
+          { status: 403 }
+        )
+      }
+      queryUserId = targetUserId
     }
 
     const inventories = await prisma.medicineInventory.findMany({
-      where: { medicine: { userId } },
+      where: { medicine: { userId: queryUserId } },
       include: {
         medicine: { select: { name: true } },
       },

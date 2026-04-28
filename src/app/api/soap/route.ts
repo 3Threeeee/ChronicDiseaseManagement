@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { verifyToken } from '@/lib/auth'
 import { calculateAdherence } from '@/lib/adherence'
+import { checkSideEffectAlert } from '@/lib/alertEngine'
 import type { SOAPRecordInfo } from '@/types'
 
 function getUserId(req: NextRequest): string | null {
@@ -121,6 +122,12 @@ export async function POST(req: NextRequest) {
       adherenceRate: record.adherenceRate ?? undefined,
       reportJson: record.reportJson ?? undefined,
       recordedAt: record.recordedAt.toISOString(),
+    }
+
+    if (symptomSeverity === 'SEVERE') {
+      checkSideEffectAlert(record.id).catch((err) =>
+        console.error('副作用预警创建失败:', err)
+      )
     }
 
     return NextResponse.json({ success: true, data })

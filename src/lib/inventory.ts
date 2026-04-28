@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { checkInventoryAlert } from '@/lib/alertEngine'
 
 export async function deductInventory(medicineId: string): Promise<void> {
   const inventory = await prisma.medicineInventory.findUnique({
@@ -16,25 +17,10 @@ export async function deductInventory(medicineId: string): Promise<void> {
 export async function checkLowInventory(medicineId: string): Promise<void> {
   const inventory = await prisma.medicineInventory.findUnique({
     where: { medicineId },
-    include: { medicine: true },
   })
   if (!inventory) return
 
-  if (inventory.remainingCount <= 0) return
-
-  if (inventory.remainingCount <= inventory.alertThreshold) {
-    await prisma.alert.create({
-      data: {
-        targetUserId: inventory.medicine.userId,
-        sourceUserId: inventory.medicine.userId,
-        level: 'YELLOW',
-        title: '库存不足',
-        message: `${inventory.medicine.name} 剩余 ${inventory.remainingCount} ${inventory.unit}，请及时补充`,
-        status: 'UNREAD',
-        relatedMedicineId: medicineId,
-      },
-    })
-  }
+  await checkInventoryAlert(inventory.id)
 }
 
 export async function detectMedicineConflict(
