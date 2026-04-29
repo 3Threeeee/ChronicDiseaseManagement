@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String              @id @default(cuid())
+  phone              String              @unique
+  passwordHash       String
+  name               String
+  role               String
+  gender             String?
+  birthDate          DateTime?
+  avatarUrl          String?
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  bindingsAsPatient  FamilyBinding[]     @relation("Patient")
+  bindingsAsFamily   FamilyBinding[]     @relation("Family")
+  medicines          Medicine[]
+  checkIns           CheckIn[]
+  soapRecords        SOAPRecord[]
+  alertSubscriptions AlertSubscription[]
+  deviceTokens       DeviceToken[]
+  alerts             Alert[]             @relation("AlertTarget")
+  triggeredAlerts    Alert[]             @relation("AlertSource")
+}
+
+model FamilyBinding {
+  id        String   @id @default(cuid())
+  patientId String
+  familyId  String
+  verified  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  patient   User     @relation("Patient", fields: [patientId], references: [id])
+  family    User     @relation("Family", fields: [familyId], references: [id])
+
+  @@unique([patientId, familyId])
+}
+
+model Medicine {
+  id            String                 @id @default(cuid())
+  userId        String
+  name          String
+  dosage        String
+  frequency     String
+  scheduleJson  String
+  note          String?
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+  user          User                   @relation(fields: [userId], references: [id])
+  inventory     MedicineInventory?
+  prescriptions MedicinePrescription[]
+  checkIns      CheckIn[]
+}
+
+model MedicineInventory {
+  id             String   @id @default(cuid())
+  medicineId     String   @unique
+  totalCount     Int
+  remainingCount Int
+  unit           String
+  alertThreshold Int      @default(5)
+  updatedAt      DateTime @updatedAt
+  medicine       Medicine @relation(fields: [medicineId], references: [id])
+}
+
+model MedicinePrescription {
+  id            String    @id @default(cuid())
+  medicineId    String
+  imageUrl      String?
+  ocrRawText    String?
+  ocrResultJson String?
+  doctorName    String?
+  hospitalName  String?
+  prescribedAt  DateTime?
+  createdAt     DateTime  @default(now())
+  medicine      Medicine  @relation(fields: [medicineId], references: [id])
+}
+
+model CheckIn {
+  id              String    @id @default(cuid())
+  userId          String
+  medicineId      String
+  scheduledTime   DateTime
+  actualTime      DateTime?
+  missed          Boolean   @default(false)
+  missedAlertSent Boolean   @default(false)
+  confirmType     String?
+  createdAt       DateTime  @default(now())
+  user            User      @relation(fields: [userId], references: [id])
+  medicine        Medicine  @relation(fields: [medicineId], references: [id])
+}
+
+model SOAPRecord {
+  id              String   @id @default(cuid())
+  userId          String
+  subjectiveNote  String?
+  symptomSeverity String?
+  symptomTags     String?
+  bloodPressure   String?
+  bloodSugar      Float?
+  heartRate       Int?
+  weight          Float?
+  temperature     Float?
+  assessmentNote  String?
+  adherenceRate   Float?
+  reportJson      String?
+  recordedAt      DateTime @default(now())
+  createdAt       DateTime @default(now())
+  user            User     @relation(fields: [userId], references: [id])
+}
+
+model Alert {
+  id                String    @id @default(cuid())
+  targetUserId      String
+  sourceUserId      String
+  level             String
+  title             String
+  message           String
+  status            String    @default("UNREAD")
+  relatedCheckInId  String?
+  relatedMedicineId String?
+  createdAt         DateTime  @default(now())
+  readAt            DateTime?
+  targetUser        User      @relation("AlertTarget", fields: [targetUserId], references: [id])
+  sourceUser        User      @relation("AlertSource", fields: [sourceUserId], references: [id])
+}
+
+model AlertSubscription {
+  id                     String  @id @default(cuid())
+  userId                 String
+  missAlertEnabled       Boolean @default(true)
+  inventoryAlertEnabled  Boolean @default(true)
+  sideEffectAlertEnabled Boolean @default(true)
+  missThresholdMinutes   Int     @default(60)
+  user                   User    @relation(fields: [userId], references: [id])
+}
+
+model DeviceToken {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String
+  platform  String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
