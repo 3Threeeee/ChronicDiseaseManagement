@@ -16,15 +16,15 @@ interface NavBarProps {
 
 const defaultPatientItems: NavItem[] = [
   { label: "首页", icon: "\u{1F3E0}", href: "/", active: false },
-  { label: "服药", icon: "\u{1F48A}", href: "/patient/checkin", active: false },
-  { label: "记录", icon: "\u{1F4CB}", href: "/patient/soap", active: false },
-  { label: "我的", icon: "\u{1F464}", href: "/patient/profile", active: false },
+  { label: "服药", icon: "\u{1F48A}", href: "/checkin", active: false },
+  { label: "记录", icon: "\u{1F4CB}", href: "/soap", active: false },
+  { label: "我的", icon: "\u{1F464}", href: "/profile", active: false },
 ];
 
 const defaultFamilyItems: NavItem[] = [
-  { label: "首页", icon: "\u{1F3E0}", href: "/", active: false },
-  { label: "监控", icon: "\u{1F4CA}", href: "/family/monitor", active: false },
-  { label: "预警", icon: "\u{1F514}", href: "/family/alerts", active: false },
+  { label: "首页", icon: "\u{1F3E0}", href: "/monitor", active: false },
+  { label: "监控", icon: "\u{1F4CA}", href: "/monitor", active: false },
+  { label: "预警", icon: "\u{1F514}", href: "/alerts", active: false },
   { label: "我的", icon: "\u{1F464}", href: "/family/profile", active: false },
 ];
 
@@ -36,7 +36,7 @@ export default function NavBar({ items, role }: NavBarProps) {
       <div className="flex items-center justify-around max-w-lg mx-auto h-16">
         {navItems.map((item) => (
           <Link
-            key={item.href}
+            key={item.label}
             href={item.href}
             className={`flex flex-col items-center gap-0.5 px-3 py-1 transition-colors duration-200 ${
               item.active ? "text-patient-primary" : "text-gray-400"

@@ -165,7 +165,7 @@ export default function SoapReportPage() {
       <div className="flex items-center gap-3 mb-6">
         <button
           type="button"
-          onClick={() => router.push('/patient/soap')}
+          onClick={() => router.push('/soap')}
           className="text-3xl-patient text-gray-400 font-bold"
         >
           ←

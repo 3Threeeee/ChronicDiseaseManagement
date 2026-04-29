@@ -4,45 +4,18 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
-enum Role {
-  PATIENT
-  FAMILY
-}
-
-enum Gender {
-  MALE
-  FEMALE
-  OTHER
-}
-
-enum Severity {
-  MILD
-  MODERATE
-  SEVERE
-}
-
-enum AlertLevel {
-  YELLOW
-  ORANGE
-  RED
-}
-
-enum AlertStatus {
-  UNREAD
-  READ
-  RESOLVED
-}
 
 model User {
   id            String    @id @default(cuid())
   phone         String    @unique
   passwordHash  String
   name          String
-  role          Role
-  gender        Gender?
+  role          String
+  gender        String?
   birthDate     DateTime?
   avatarUrl     String?
   createdAt     DateTime  @default(now())
@@ -127,7 +100,7 @@ model SOAPRecord {
   id          String    @id @default(cuid())
   userId      String
   subjectiveNote    String?
-  symptomSeverity   Severity?
+  symptomSeverity   String?
   symptomTags       String?
   bloodPressure    String?
   bloodSugar       Float?
@@ -146,10 +119,10 @@ model Alert {
   id          String      @id @default(cuid())
   targetUserId  String
   sourceUserId  String
-  level       AlertLevel
+  level       String
   title       String
   message     String
-  status      AlertStatus  @default(UNREAD)
+  status      String  @default("UNREAD")
   relatedCheckInId  String?
   relatedMedicineId String?
   createdAt   DateTime    @default(now())

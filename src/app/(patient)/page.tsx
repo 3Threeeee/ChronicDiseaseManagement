@@ -53,7 +53,7 @@ export default function PatientHomePage() {
             <p className="text-5xl mb-4">💊</p>
             <p className="text-2xl-patient text-gray-500 mb-4">还没有服药任务</p>
             <button
-              onClick={() => router.push('/patient/medicines')}
+              onClick={() => router.push('/medicines')}
               className="text-xl-patient font-bold text-patient-primary underline"
             >
               去添加药品
@@ -105,7 +105,7 @@ export default function PatientHomePage() {
 
       <div className="grid grid-cols-2 gap-4">
         <button
-          onClick={() => router.push('/patient/checkin')}
+          onClick={() => router.push('/checkin')}
           className="bg-white rounded-2xl p-5 shadow-sm active:scale-[0.98] transition-transform"
         >
           <p className="text-4xl mb-2">💊</p>
@@ -113,7 +113,7 @@ export default function PatientHomePage() {
           <p className="text-lg text-gray-400 mt-1">今日服药记录</p>
         </button>
         <button
-          onClick={() => router.push('/patient/inventory')}
+          onClick={() => router.push('/inventory')}
           className="bg-white rounded-2xl p-5 shadow-sm active:scale-[0.98] transition-transform"
         >
           <p className="text-4xl mb-2">📦</p>
@@ -121,7 +121,7 @@ export default function PatientHomePage() {
           <p className="text-lg text-gray-400 mt-1">查看药品库存</p>
         </button>
         <button
-          onClick={() => router.push('/patient/soap')}
+          onClick={() => router.push('/soap')}
           className="bg-white rounded-2xl p-5 shadow-sm active:scale-[0.98] transition-transform"
         >
           <p className="text-4xl mb-2">📋</p>
@@ -129,7 +129,7 @@ export default function PatientHomePage() {
           <p className="text-lg text-gray-400 mt-1">记录健康状态</p>
         </button>
         <button
-          onClick={() => router.push('/patient/checkin/history')}
+          onClick={() => router.push('/checkin/history')}
           className="bg-white rounded-2xl p-5 shadow-sm active:scale-[0.98] transition-transform"
         >
           <p className="text-4xl mb-2">📅</p>

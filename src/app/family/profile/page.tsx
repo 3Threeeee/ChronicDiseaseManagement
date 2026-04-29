@@ -83,7 +83,7 @@ export default function FamilyProfilePage() {
 
         <div className="space-y-3">
           <button
-            onClick={() => router.push('/family/monitor')}
+            onClick={() => router.push('/monitor')}
             className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
           >
             <div className="flex items-center gap-4">
@@ -94,7 +94,7 @@ export default function FamilyProfilePage() {
           </button>
 
           <button
-            onClick={() => router.push('/family/alerts')}
+            onClick={() => router.push('/alerts')}
             className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
           >
             <div className="flex items-center gap-4">
@@ -105,7 +105,7 @@ export default function FamilyProfilePage() {
           </button>
 
           <button
-            onClick={() => router.push('/family/bind')}
+            onClick={() => router.push('/bind')}
             className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
           >
             <div className="flex items-center gap-4">

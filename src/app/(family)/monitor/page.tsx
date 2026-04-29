@@ -108,7 +108,7 @@ export default function MonitorPage() {
           还没有绑定家人
         </p>
         <Link
-          href="/family/bind"
+          href="/bind"
           className="text-xl-patient text-patient-primary underline"
         >
           去添加家人
@@ -134,7 +134,7 @@ export default function MonitorPage() {
           return (
             <Link
               key={ps.profile.id}
-              href={`/family/monitor/${ps.profile.id}`}
+              href={`/monitor/${ps.profile.id}`}
               className="block bg-white rounded-2xl p-5 shadow-sm active:scale-[0.98] transition-transform relative"
             >
               <div className="flex items-center gap-4 mb-4">

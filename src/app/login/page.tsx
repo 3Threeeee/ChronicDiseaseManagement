@@ -40,11 +40,12 @@ export default function LoginPage() {
 
       localStorage.setItem('token', json.data.token)
       localStorage.setItem('user', JSON.stringify(json.data.user))
+      document.cookie = `token=${json.data.token}; path=/; max-age=${7 * 24 * 60 * 60}`
 
       if (json.data.user.role === 'PATIENT') {
-        router.push('/patient')
+        router.push('/')
       } else {
-        router.push('/family')
+        router.push('/monitor')
       }
     } catch {
       setError('网络错误，请稍后重试')

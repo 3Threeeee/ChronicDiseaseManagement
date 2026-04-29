@@ -92,14 +92,14 @@ export default function SoapHistoryPage() {
         <div className="flex gap-3">
           <button
             type="button"
-            onClick={() => router.push('/patient/soap/report')}
+            onClick={() => router.push('/soap/report')}
             className="text-2xl-patient px-5 py-3 rounded-xl bg-patient-primary text-white font-bold shadow-lg hover:opacity-90"
           >
             导出报告
           </button>
           <button
             type="button"
-            onClick={() => router.push('/patient/soap')}
+            onClick={() => router.push('/soap')}
             className="text-2xl-patient px-5 py-3 rounded-xl bg-patient-success text-white font-bold shadow-lg hover:opacity-90"
           >
             + 新增
@@ -127,7 +127,7 @@ export default function SoapHistoryPage() {
           </p>
           <button
             type="button"
-            onClick={() => router.push('/patient/soap')}
+            onClick={() => router.push('/soap')}
             className="px-8 py-5 rounded-2xl bg-patient-primary text-white text-3xl-patient font-bold shadow-xl"
           >
             记录健康数据

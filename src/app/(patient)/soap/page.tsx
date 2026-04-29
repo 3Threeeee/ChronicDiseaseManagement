@@ -73,7 +73,7 @@ export default function SoapPage() {
       }
 
       setCurrentAdherence(json.data?.adherenceRate ?? null)
-      router.push('/patient/soap/history')
+      router.push('/soap/history')
     } catch {
       setError('网络错误，请重试')
     } finally {
@@ -93,7 +93,7 @@ export default function SoapPage() {
         </h1>
         <button
           type="button"
-          onClick={() => router.push('/patient/soap/history')}
+          onClick={() => router.push('/soap/history')}
           className="text-2xl-patient text-patient-primary font-bold underline"
         >
           历史记录
@@ -280,7 +280,7 @@ export default function SoapPage() {
 
         <button
           type="button"
-          onClick={() => router.push('/patient/soap/report')}
+          onClick={() => router.push('/soap/report')}
           className="w-full py-4 rounded-2xl border-3 border-dashed border-patient-primary text-3xl-patient text-patient-primary font-bold hover:bg-blue-50 transition-colors mb-4"
         >
           查看健康报告

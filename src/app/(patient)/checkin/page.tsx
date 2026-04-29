@@ -164,7 +164,7 @@ export default function CheckInPage() {
           description="先去添加药品，才能开始服药打卡哦"
           action={{
             label: '去添加药品',
-            onClick: () => router.push('/patient/medicines'),
+            onClick: () => router.push('/medicines'),
           }}
         />
       ) : (
@@ -220,7 +220,7 @@ export default function CheckInPage() {
 
       <div className="fixed bottom-20 right-4 z-30">
         <button
-          onClick={() => router.push('/patient/checkin/history')}
+          onClick={() => router.push('/checkin/history')}
           className="w-14 h-14 rounded-full bg-white shadow-lg border border-gray-200 flex items-center justify-center text-2xl"
         >
           📅

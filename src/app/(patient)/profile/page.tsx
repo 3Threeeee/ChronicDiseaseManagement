@@ -73,7 +73,7 @@ export default function PatientProfilePage() {
 
       <div className="space-y-3">
         <button
-          onClick={() => router.push('/patient/profile/alerts')}
+          onClick={() => router.push('/profile/alerts')}
           className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
         >
           <div className="flex items-center gap-4">
@@ -84,7 +84,7 @@ export default function PatientProfilePage() {
         </button>
 
         <button
-          onClick={() => router.push('/patient/medicines')}
+          onClick={() => router.push('/medicines')}
           className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
         >
           <div className="flex items-center gap-4">
@@ -95,7 +95,7 @@ export default function PatientProfilePage() {
         </button>
 
         <button
-          onClick={() => router.push('/patient/inventory')}
+          onClick={() => router.push('/inventory')}
           className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
         >
           <div className="flex items-center gap-4">
@@ -106,7 +106,7 @@ export default function PatientProfilePage() {
         </button>
 
         <button
-          onClick={() => router.push('/patient/checkin/history')}
+          onClick={() => router.push('/checkin/history')}
           className="w-full bg-white rounded-2xl p-5 shadow-sm flex items-center justify-between active:scale-[0.98] transition-transform"
         >
           <div className="flex items-center gap-4">
