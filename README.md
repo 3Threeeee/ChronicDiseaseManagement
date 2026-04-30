@@ -132,36 +132,36 @@ prisma/
 
   ![Image](https://github.com/user-attachments/assets/b2aed44b-60d3-4543-a5b4-960c8a6439e1)
 
-  ![]https://github.com/user-attachments/assets/920a57e9-27ab-45a5-8b02-02d9aee0fef2
+  ![Image](https://github.com/user-attachments/assets/86ff7342-8fe9-4ce0-957a-a4b4c78a9867)
 - **服药打卡** → 垂直时间轴展示今日任务，**滑动确认服药**防止误触
 
-  ![]https://github.com/user-attachments/assets/05c83f6d-1a9f-436f-be3a-8c5cec2e7bbc
+  ![Image](https://github.com/user-attachments/assets/20007791-a0a5-47ac-a3f6-12d3668b2fcb)
 - **库存管理** → 打卡自动扣减库存，低库存预警，新旧药冲突检测
 
-  ![]https://github.com/user-attachments/assets/988d01af-362f-4941-8c28-0b825b180b18
+  ![Image](https://github.com/user-attachments/assets/05c83f6d-1a9f-436f-be3a-8c5cec2e7bbc)
 - **SOAP 档案** → 表情勾选症状 + 体征数据录入 + 依从率统计 + 医生报告
 
-  ![]https://github.com/user-attachments/assets/b2aed44b-60d3-4543-a5b4-960c8a6439e4
+  ![Image](https://github.com/user-attachments/assets/988d01af-362f-4941-8c28-08b25b180b18)39e4
 
-  ![]https://github.com/user-attachments/assets/86ff7342-8fe9-4ce0-957a-a4b4c78a9867
+  ![Image](https://github.com/user-attachments/assets/920a57e9-27ab-45a5-8b02-02d9aee0fef2)
 - **AI 识别配置** → "我的"页面右上角齿轮图标，可自定义 OCR 调用的 AI 大模型 API
 
-  ![]https://github.com/user-attachments/assets/17b8438e-0cd4-4b4a-8352-8292ba0b9d62
+  ![Image](https://github.com/user-attachments/assets/79a0ed3e-3d4d-480a-bb23-e6920b9b2215)
 
 ### 家属端（监控 · 预警）
 
 - **绑定患者** → 输入患者手机号建立监护关
 
-  ![]https://github.com/user-attachments/assets/765a05fb-b36b-4b48-a0f9-159b3a4a7615
+  ![Image](https://github.com/user-attachments/assets/17b8438e-0cd4-4b4a-8352-8292ba0b9d62)
 - **药品管理** → 手动添加药品，支持 **拍照 OCR** 自动识别处方/药盒
 
-  ![]https://github.com/user-attachments/assets/57b9d5dd-26fd-4031-b1e2-a39062dffd00
+  ![Image](https://github.com/user-attachments/assets/765a05fb-b36b-4b48-a0f9-159b3a4a7615)
 - **监控面板** → 实时查看患者服药进度、库存状态、健康记录
 
-  ![]https://github.com/user-attachments/assets/20007791-a0a5-47ac-a3f6-12d3668b2fcb
+  ![Image](https://github.com/user-attachments/assets/df235b19-dbf8-4079-aed5-b1ee2da797c0)
 - **分级预警** → 黄色（库存不足）、橙色（漏服>1小时）、红色（严重副作用）
 
-  ![]https://github.com/user-attachments/assets/79a0ed3e-3d4d-480a-bb23-e6920b9b2215
+  ![Image](https://github.com/user-attachments/assets/57b9d5dd-26fd-4031-b1e2-a39062dffd00)
 
 ### 智能化
 
