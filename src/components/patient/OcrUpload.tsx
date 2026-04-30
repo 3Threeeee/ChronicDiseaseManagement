@@ -29,12 +29,35 @@ export default function OcrUpload({ onConfirm }: OcrUploadProps) {
     setResult(null)
 
     try {
-      const formData = new FormData()
-      formData.append('image', file)
+      const buffer = await file.arrayBuffer()
+      const base64 = btoa(
+        new Uint8Array(buffer).reduce((data, byte) => data + String.fromCharCode(byte), '')
+      )
+      const mimeType = file.type || 'image/jpeg'
+      const dataUrl = `data:${mimeType};base64,${base64}`
+
+      let clientConfig = {}
+      try {
+        const stored = localStorage.getItem('ocrApiConfig')
+        if (stored) {
+          const parsed = JSON.parse(stored)
+          if (parsed.apiKey) {
+            clientConfig = {
+              apiUrl: parsed.apiUrl,
+              apiKey: parsed.apiKey,
+              model: parsed.model,
+            }
+          }
+        }
+      } catch { /* ignore */ }
 
       const res = await fetch('/api/medicines/ocr', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          image: dataUrl,
+          ...clientConfig,
+        }),
       })
 
       const json: ApiResponse<OcrResult> = await res.json()

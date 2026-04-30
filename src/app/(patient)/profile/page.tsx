@@ -11,10 +11,15 @@ export default function PatientProfilePage() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    const token = document.cookie
+    let token = document.cookie
       .split(';')
       .find((c) => c.trim().startsWith('token='))
       ?.split('=')[1]
+    if (!token) {
+      try {
+        token = localStorage.getItem('token') || ''
+      } catch { /* ignore */ }
+    }
     if (!token) {
       setError('请先登录')
       setLoading(false)
@@ -59,7 +64,29 @@ export default function PatientProfilePage() {
 
   return (
     <div className="px-4 py-6 space-y-5">
-      <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
+      <div className="bg-white rounded-2xl p-6 shadow-sm text-center relative">
+        <button
+          onClick={() => router.push('/profile/settings')}
+          className="absolute top-4 right-4 p-2 rounded-xl hover:bg-gray-100 transition-colors"
+          title="设置"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-500"
+          >
+            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </button>
+
         <div className="w-20 h-20 rounded-full bg-patient-primary/10 flex items-center justify-center mx-auto mb-3 text-5xl">
           👤
         </div>

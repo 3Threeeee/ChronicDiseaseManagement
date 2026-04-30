@@ -35,22 +35,21 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: '未登录' }, { status: 401 })
     }
 
-    const formData = await req.formData()
-    const imageFile = formData.get('image') as File | null
-
-    if (!imageFile) {
+    const body = await req.json().catch(() => null)
+    if (!body || !body.image) {
       return NextResponse.json(
         { success: false, error: '请上传图片' },
         { status: 400 }
       )
     }
 
-    const buffer = Buffer.from(await imageFile.arrayBuffer())
-    const base64 = buffer.toString('base64')
-    const mimeType = imageFile.type || 'image/jpeg'
-    const dataUrl = `data:${mimeType};base64,${base64}`
+    const dataUrl = body.image as string
 
-    const apiKey = process.env.VISION_API_KEY
+    const clientApiUrl = body.apiUrl
+    const clientApiKey = body.apiKey
+    const clientModel = body.model
+
+    const apiKey = clientApiKey || process.env.VISION_API_KEY
     if (!apiKey) {
       return NextResponse.json(
         { success: false, error: 'OCR 服务未配置' },
@@ -59,7 +58,7 @@ export async function POST(req: NextRequest) {
     }
 
     const apiUrl =
-      process.env.VISION_API_URL || 'https://api.deepseek.com/v1/chat/completions'
+      clientApiUrl || process.env.VISION_API_URL || 'https://api.deepseek.com/v1/chat/completions'
 
     const visionResponse = await fetch(apiUrl, {
       method: 'POST',
@@ -68,7 +67,7 @@ export async function POST(req: NextRequest) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'deepseek-chat',
+        model: clientModel || 'deepseek-chat',
         messages: [
           {
             role: 'user',

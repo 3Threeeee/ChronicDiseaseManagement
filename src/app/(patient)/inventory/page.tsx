@@ -27,7 +27,7 @@ export default function InventoryPage() {
       const [invRes, medRes, chkRes] = await Promise.all([
         fetch('/api/inventory'),
         fetch('/api/medicines'),
-        fetch(`/api/checkins?date=${todayStr}`),
+        fetch(`/api/checkins/today?date=${todayStr}`),
       ])
 
       const invJson: ApiResponse<InventoryInfo[]> = await invRes.json()
