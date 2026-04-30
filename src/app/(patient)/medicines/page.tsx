@@ -401,7 +401,7 @@ export default function MedicinesPage() {
         </div>
       )}
 
-      <div className="fixed bottom-6 left-4 right-4 z-40 max-w-lg mx-auto">
+      <div className="fixed bottom-24 left-4 right-4 z-40 max-w-lg mx-auto">
         <button
           type="button"
           onClick={() => setShowOcr(true)}
@@ -418,10 +418,11 @@ export default function MedicinesPage() {
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-            <circle cx="12" cy="13" r="4" />
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
           </svg>
-          拍照录入
+          导入识别
         </button>
       </div>
     </div>
