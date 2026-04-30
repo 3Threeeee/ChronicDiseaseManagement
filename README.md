@@ -155,10 +155,10 @@ prisma/
   ![Image](https://github.com/user-attachments/assets/765a05fb-b36b-4b48-a0f9-159b3a4a7615)
 - **药品管理** → 手动添加药品，支持 **拍照 OCR** 自动识别处方/药盒
 
-  ![Image](https://github.com/user-attachments/assets/20007791-a0a5-47ac-a3f6-12d3668b2fcb)
+  ![Image](https://github.com/user-attachments/assets/57b9d5dd-26fd-4031-b1e2-a39062dffd00)
 - **监控面板** → 实时查看患者服药进度、库存状态、健康记录
 
-  ![Image](https://github.com/user-attachments/assets/df235b19-dbf8-4079-aed5-b1ee2da797c0)
+  ![Image](https://github.com/user-attachments/assets/20007791-a0a5-47ac-a3f6-12d3668b2fcb)
 - **分级预警** → 黄色（库存不足）、橙色（漏服>1小时）、红色（严重副作用）
 
   ![Image](https://github.com/user-attachments/assets/79a0ed3e-3d4d-480a-bb23-e6920b9b2215)
