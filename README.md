@@ -130,7 +130,7 @@ prisma/
 
 - **身份选择** → 首页选择"我是患者"进入
 
-  ![]https://github.com/user-attachments/assets/df235b19-dbf8-4079-aed5-bbe224c787c0
+  ![Image](https://github.com/user-attachments/assets/b2aed44b-60d3-4543-a5b4-960c8a6439e1)
 
   ![]https://github.com/user-attachments/assets/920a57e9-27ab-45a5-8b02-02d9aee0fef2
 - **服药打卡** → 垂直时间轴展示今日任务，**滑动确认服药**防止误触
